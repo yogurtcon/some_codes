@@ -194,8 +194,11 @@ pre = model.predict_classes(img2)
 result = pre[0]
 print(result)
 
-原因是img加载进来是(250, 250, 4)，但是方法predict_classes()要求输入的第一个dimension是bachsize，所以需要将数据reshape为(1，X, X, X)。
-四个参数分别对应图片的个数，图片的通道数，图片的长与宽。具体的参加keras文档。
+原因是img加载进来是(250, 250, 4)，但是方法predict_classes()要求输入的第一个dimension是bachsize
+
+所以需要将数据reshape为(1，X, X, X)
+
+四个参数分别对应图片的个数，图片的通道数，图片的长与宽。具体的参加keras文档
 ```
 
 ## 单用model.evaluate方法不会自动输出数值，需要手动输出他返回的两个数值，如下所示
