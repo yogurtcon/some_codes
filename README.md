@@ -1,4 +1,4 @@
-# 2020/1/9
+## 遍历filepath下所有文件，包括子目录，存在于同一文件夹下的文件即拥有同一标签的数据
 
 import os
 import cv2
@@ -12,7 +12,6 @@ label = 0  # 第一个标签
 
 
 def load_data(filepath):
-    # 遍历filepath下所有文件，包括子目录
     files = os.listdir(filepath)
     for fi in files:
         fi_d = os.path.join(filepath, fi+'/')
