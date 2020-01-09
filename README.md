@@ -1,3 +1,68 @@
+## 提取json文件中的值
+
+```
+import json
+import os
+
+li = []  # 数据集列表
+
+
+def load_data(filepath):
+    # 遍历filepath下所有文件，包括子目录，路径的最后要加斜杆
+    files = os.listdir(filepath)
+    for fi in files:
+        fi_d = os.path.join(filepath, fi+'/')
+        if os.path.isdir(fi_d):
+            load_data(fi_d)
+        else:
+            li.append(fi_d[:-1])
+    return li
+
+
+load_data('D:/语料识别/语料库/')
+print(len(li))
+
+for i in range(0, len(li)):
+    # file_path = li[i]
+    # (filepath, tempfilename) = os.path.split(file_path)
+    # (filename, extension) = os.path.splitext(tempfilename)
+
+    b = 'D:/语料识别/语料库/' + str(i) + '.txt'
+    # b = filepath + '/' + filename + '.txt'
+
+    file1 = open(li[i], 'r', encoding='utf-8')
+    file2 = open(b, 'w', encoding='utf-8')
+    for line in file1:
+        a_line = json.loads(line)
+        b_line = a_line['answer'] + '\n'
+        file2.write(b_line)
+
+    print(b)
+    file1.close()
+    file2.close()
+
+```
+
+## 按固定行数拆分文本
+
+```
+# 将一个大文本文件进行拆分，每10000行一次拆分
+
+
+file1 = open('D:/语料识别/语料库/new2016zh/news2016zh_train.json', 'r', encoding='utf-8')
+lines = file1.readlines()
+try:
+    for j in range(0, (len(lines)//10000)+1):
+        file2 = open('D:/语料识别/语料库/new2016zh/train_' + str(j) + '.json', 'w', encoding='utf-8')
+        print(10000 * (j + 1), '/', len(lines))
+        for line in lines[10000*j: 10000*(j+1)]:
+            file2.write(line)
+        file2.close()
+finally:
+    file1.close()
+
+```
+
 ## 遍历filepath下所有文件，包括子目录，存在于同一文件夹下的文件即拥有同一标签的数据
 ```markdown
 import os
