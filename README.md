@@ -345,9 +345,9 @@ x[0]是键，x[1]是值
 ```markdown
 import json
 
-dic={'1':'the','2':2,'3':'five','10':'orange'}
+dic={'1':'the','3':'five','10':'orange','2':‘2’}
 new_dic = []
-for key, value in sorted(dic.items(), key=lambda x: int(x[1])):
+for key, value in sorted(dic.items(), key=lambda x: int(x[0])):
     new_list = key + ' ' + value
     a = new_list.split(' ')
     new_dic.append(a)
@@ -359,3 +359,4 @@ fileObject = open(r'dic2.json', 'w')
 fileObject.write(jsObj)
 fileObject.close()
 ```
+新词典为{'1'： 'the', '2'： '2', '3'： 'five', '10'： 'orange'}
