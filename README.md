@@ -327,3 +327,35 @@ print(dict_a)  # 输出完整的字典  {'one': 1, 2: 'two', 3: 3, 'four': 'four
 print(dict_a.keys())  # 输出所有键  dict_keys(['one', 2, 3, 'four'])
 print(dict_a.values())  # 输出所有值  dict_values([1, 'two', 3, 'four'])
 ```
+## python 词典排序
+
+```markdown
+for key,value in sorted(dic.items(), key=lambda x: int(x[1])):
+  print(key,value)
+```
+x[0]是键，x[1]是值
+
+如果没有用int（）的话是按照字符串排序，也就会出现以下这种情况：
+
+‘1，2，10’这三个数排序的话变成‘1，10，2’
+
+这个坑以前踩过，贼坑，用整数排序的话就正常了：‘1，2，10’
+
+## 词典按值排序并将新词典写入一个文本中
+```markdown
+import json
+
+dic={'1':'the','2':2,'3':'five','10':'orange'}
+new_dic = []
+for key, value in sorted(dic.items(), key=lambda x: int(x[1])):
+    new_list = key + ' ' + value
+    a = new_list.split(' ')
+    new_dic.append(a)
+new_dic = dict(new_dic)
+print(new_dic)
+
+jsObj = json.dumps(new_dic)
+fileObject = open(r'dic2.json', 'w')
+fileObject.write(jsObj)
+fileObject.close()
+```
