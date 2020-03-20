@@ -341,6 +341,8 @@ x[0]是键，x[1]是值
 
 这个坑以前踩过，贼坑，用整数排序的话就正常了：‘1，2，10’
 
+感谢这位兄弟 http://www.cocoachina.com/articles/90097 解决了这个对我困扰很大的问题 
+
 ## 词典按值排序并将新词典写入一个文本中
 ```markdown
 import json
@@ -360,3 +362,13 @@ fileObject.write(jsObj)
 fileObject.close()
 ```
 新词典为{'1'： 'the', '2'： '2', '3'： 'five', '10'： 'orange'}
+
+## 输出文件夹内每个文件的完整路径
+```
+import os
+
+files = os.listdir('result')
+for fi in files:
+    fi_d = os.path.join('result', fi+'/')
+    print(fi_d[:-1])
+```
